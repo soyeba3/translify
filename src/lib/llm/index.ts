@@ -4,8 +4,13 @@ import { LLMModel, LLMProvider } from "./types";
 
 export const MODELS: LLMModel[] = [
   {
+    id: "qwen/qwen-2.5-72b-instruct",
+    label: "Qwen 2.5 72B",
+    provider: "openrouter",
+  },
+  {
     id: "openai/gpt-oss-20b:free",
-    label: "GPT OSS 20B (Free)",
+    label: "GPT OSS 20B",
     provider: "openrouter",
   },
   // {
@@ -15,19 +20,15 @@ export const MODELS: LLMModel[] = [
   // },
   {
     id: "deepseek/deepseek-r1-0528:free",
-    label: "DeepSeek R1 (Free)",
+    label: "DeepSeek R1",
     provider: "openrouter",
   },
   {
     id: "z-ai/glm-4.5-air:free",
-    label: "GLM 4.5 Air (Free)",
+    label: "GLM 4.5 Air",
     provider: "openrouter",
   },
-  {
-    id: "qwen/qwen-2.5-72b-instruct",
-    label: "Qwen 2.5 72B (OpenRouter)",
-    provider: "openrouter",
-  },
+
   // {
   //   id: "google/gemini-2.0-flash-001",
   //   label: "Gemini 2.0 Flash (OpenRouter)",
