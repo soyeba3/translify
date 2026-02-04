@@ -28,21 +28,21 @@ export const MODELS: LLMModel[] = [
     label: "Qwen 2.5 72B (OpenRouter)",
     provider: "openrouter",
   },
-  {
-    id: "google/gemini-2.0-flash-001",
-    label: "Gemini 2.0 Flash (OpenRouter)",
-    provider: "openrouter",
-  },
-  {
-    id: "google/gemini-flash-1.5",
-    label: "Gemini 1.5 Flash (OpenRouter)",
-    provider: "openrouter",
-  },
-  {
-    id: "gemini-2.0-flash",
-    label: "Gemini 2.0 Flash (Native)",
-    provider: "gemini",
-  },
+  // {
+  //   id: "google/gemini-2.0-flash-001",
+  //   label: "Gemini 2.0 Flash (OpenRouter)",
+  //   provider: "openrouter",
+  // },
+  // {
+  //   id: "google/gemini-flash-1.5",
+  //   label: "Gemini 1.5 Flash (OpenRouter)",
+  //   provider: "openrouter",
+  // },
+  // {
+  //   id: "gemini-2.0-flash",
+  //   label: "Gemini 2.0 Flash (Native)",
+  //   provider: "gemini",
+  // },
 ];
 
 export function getProvider(modelId: string): LLMProvider {
