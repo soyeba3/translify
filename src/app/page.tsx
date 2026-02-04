@@ -12,6 +12,20 @@ export default function Home() {
   const [modelId, setModelId] = useState(MODELS[0].id);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleCopy = async () => {
+    if (!outputText) return;
+    try {
+      await navigator.clipboard.writeText(outputText);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (err) {
+      // Fallback or ignore
+    }
+  };
 
   const handleTranslate = async () => {
     if (!inputText.trim() || isOverLimit) return;
@@ -33,6 +47,7 @@ export default function Home() {
       }
 
       setOutputText(data.translatedText);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setError(err.message || "Something went wrong. Please try again.");
     } finally {
@@ -116,6 +131,43 @@ export default function Home() {
               readOnly
               className="bg-zinc-50/50 dark:bg-zinc-900/30"
             />
+            {outputText && (
+              <button
+                onClick={handleCopy}
+                className="absolute top-[38px] right-3 p-2 text-zinc-500 rounded-lg transition-all hover:bg-zinc-100 dark:hover:bg-zinc-800 active:scale-95"
+                title="Copy to clipboard"
+              >
+                {isCopied ? (
+                  <svg
+                    className="w-4 h-4 text-green-600 dark:text-green-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2.5"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                    />
+                  </svg>
+                )}
+              </button>
+            )}
             {error && (
               <div className="flex gap-3 items-start p-4 mt-4 text-sm text-red-600 bg-red-50 rounded-xl border border-red-200 dark:border-red-900/30 dark:bg-red-900/20 dark:text-red-400">
                 <svg
@@ -138,7 +190,7 @@ export default function Home() {
         </div>
 
         {/* Info Footer */}
-        <div className="flex flex-col gap-6 justify-center items-center mt-16 text-sm text-center text-zinc-500 md:flex-row md:gap-12">
+        <div className="flex flex-col gap-6 items-start mt-16 text-sm text-zinc-500 md:flex-row md:justify-center md:items-center md:text-center md:gap-12">
           <div className="flex gap-2 items-center">
             <span className="flex justify-center items-center w-5 h-5 rounded-md bg-zinc-100 dark:bg-zinc-800">
               1
